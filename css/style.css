@@ -116,6 +116,24 @@ h1 {
     color: #2774F8;
 }
 
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.like-button.pressed .fa-thumbs-up {
+    animation: scale 0.3s ease-in-out;
+}
+
 .like-button:not(.like-button--liked):hover {
     background-color: #e3e3e3
 }
