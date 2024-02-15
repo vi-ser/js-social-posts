@@ -124,13 +124,13 @@ posts.forEach(function (currentPost, index) {
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
-            </div>
-            <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">${currentPost.likes}</b> persone
-            </div>
+              </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${currentPost.likes}</b> persone
+                </div>
+             </div>
         </div>
     </div>
-</div>
     `
 })
 
@@ -143,17 +143,7 @@ likeButtonElements.forEach(function (currentButton, index) {
         event.preventDefault();
         console.log(index + "click");
 
-        if (currentButton.classList.contains("pressed")) {
-
-            currentButton.classList.remove("pressed")
-
-        }
-
-        else {
-
-            currentButton.classList.add("pressed");
-
-        }
+        currentButton.classList.toggle("pressed");
 
     })
 
