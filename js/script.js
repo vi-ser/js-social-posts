@@ -86,10 +86,33 @@ const postListElement = document.getElementById("container");
 
 posts.forEach(function (currentPost, index) {
 
-    // prima assegno un'immagine generica a chi non ce l'ha
-    if (currentPost.author.image == null) {
-        currentPost.author.image = "./img/profile-pic.png";
+    // se l'autore non ha immagine del profilo, ne genero una con le iniziali
+    if (currentPost.author.image === null) {
+
+        // divido il nome in parole
+        const words = currentPost.author.name.split(" ");
+
+        // memorizzo le iniziali in un array
+        const newProfilePic = [];
+
+        // itero attraverso le parole del nome
+        for (let i = 0; i < words.length; i++) {
+
+            // Ottieni la prima lettera della parola attuale
+            const initial = words[i][0];
+
+            // aggiungo l'iniziale all'array delle iniziali
+            newProfilePic.push(initial);
+
+        }
+
+        // unisco le iniziali in una stringa
+        const initials = newProfilePic.join("");
+
+        // assegno le iniziali all'immagine del profilo (grazie chatGpt)
+        currentPost.author.image = `https://ui-avatars.com/api/?name=${initials}&size=300`;
     }
+
 
     // Converto la data nel formato gg/mm/aaaa
     const dateSplit = currentPost.created.split('-');
@@ -126,7 +149,7 @@ posts.forEach(function (currentPost, index) {
                 </a>
               </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${currentPost.likes}</b> persone
+                Piace a <b id="like-counter-${postId}" class="js-likes-counter">${currentPost.likes}</b> persone
                 </div>
              </div>
         </div>
@@ -141,10 +164,41 @@ likeButtonElements.forEach(function (currentButton, index) {
     currentButton.addEventListener("click", function () {
 
         event.preventDefault();
-        console.log(index + "click");
+        // console.log(index + "click");
 
-        currentButton.classList.toggle("pressed");
+        // ottengo l'ID del post dall'attributo data (chiesto aiuto a chatGpt per questo passaggio)
+        const postId = parseInt(currentButton.getAttribute("data-postid"));
+
+        // cerco il post corrispondente all'ID
+        let post;
+        for (let i = 0; i < posts.length; i++) {
+            if (posts[i].id === postId) {
+                post = posts[i];
+                break;
+            }
+        }
+
+        // se il bottone è stato già premuto
+        if (currentButton.classList.contains("pressed")) {
+
+            currentButton.classList.remove("pressed")
+            post.likes--;
+        }
+
+        // se non è stato ancora premuto
+        else {
+
+            currentButton.classList.add("pressed");
+            post.likes++;
+
+        }
+
+        // aggiorno il testo del conteggio dei like nel DOM
+        const likeCounterElement = document.getElementById(`like-counter-${postId}`);
+
+        likeCounterElement.textContent = post.likes;
 
     })
 
 })
+
