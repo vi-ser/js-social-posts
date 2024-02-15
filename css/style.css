@@ -27,13 +27,14 @@ h1 {
     margin: 0 auto;
 }
 
-.posts-list > * {
+.posts-list>* {
     margin-bottom: 24px;
 }
 
-.post { 
+.post {
     padding: 16px;
     background-color: white;
+    border-radius: 16px;
 }
 
 .post__header {
@@ -106,7 +107,7 @@ h1 {
 .like-button {
     display: inline-block;
     padding: 16px;
-    border-radius: 8px;    
+    border-radius: 8px;
     text-decoration: none;
     color: #404040;
 }
