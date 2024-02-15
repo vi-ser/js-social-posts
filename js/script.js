@@ -84,7 +84,7 @@ const posts = [
 const postListElement = document.getElementById("container");
 
 
-posts.forEach(function (currentPost) {
+posts.forEach(function (currentPost, index) {
 
     // prima assegno un'immagine generica a chi non ce l'ha
     if (currentPost.author.image == null) {
@@ -95,6 +95,9 @@ posts.forEach(function (currentPost) {
     const dateSplit = currentPost.created.split('-');
 
     const italianDate = dateSplit[2] + '-' + dateSplit[1] + '-' + dateSplit[0];
+
+    // assegno un numero progressivo da 1 a N all'id
+    let postId = index + 1;
 
     // inserisco l'elemento html dentro la lista dei post
     postListElement.innerHTML += `
@@ -117,7 +120,7 @@ posts.forEach(function (currentPost) {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="${currentPost.id}">
+                <a class="like-button  js-like-button" href="#" data-postid="${postId}">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
