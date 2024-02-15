@@ -133,3 +133,28 @@ posts.forEach(function (currentPost, index) {
 </div>
     `
 })
+
+const likeButtonElements = document.querySelectorAll(".like-button");
+
+likeButtonElements.forEach(function (currentButton, index) {
+
+    currentButton.addEventListener("click", function () {
+
+        event.preventDefault();
+        console.log(index + "click");
+
+        if (currentButton.classList.contains("pressed")) {
+
+            currentButton.classList.remove("pressed")
+
+        }
+
+        else {
+
+            currentButton.classList.add("pressed");
+
+        }
+
+    })
+
+})
