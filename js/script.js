@@ -26,8 +26,8 @@ BONUS
 const posts = [
     {
         id: 1,
-        content: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        media: "https://unsplash.it/600/300?image=171",
+        content: "Dopo una giornata intensa, mi fermo un attimo davanti alla finestra. La città si sfuma nel crepuscolo, regalandomi un momento di pace e riflessione mentre il mondo là fuori continua a vivere la sua frenetica vita.",
+        media: "https://unsplash.it/600/400?image=171",
         author: {
             name: "Phil Mangione",
             image: "https://unsplash.it/300/300?image=15"
@@ -37,7 +37,7 @@ const posts = [
     },
     {
         id: 2,
-        content: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        content: "Un momento di serenità nella natura, dove il vento danza tra le spighe dorate di grano e gli alberi custodi sussurrano segreti millenari all'orecchio del mondo.",
         media: "https://unsplash.it/600/400?image=112",
         author: {
             name: "Sofia Perlari",
@@ -48,7 +48,7 @@ const posts = [
     },
     {
         id: 3,
-        content: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        content: "Le nuvole abbracciano la Torre Eiffel, rendendola ancora più affascinante nella sua solitudine. Mi chiedo quante storie si nascondano sotto il suo mantello di nebbia.",
         media: "https://unsplash.it/600/400?image=234",
         author: {
             name: "Chiara Passaro",
@@ -59,7 +59,7 @@ const posts = [
     },
     {
         id: 4,
-        content: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        content: "Tra le pagine di questo libro, trovo rifugio e ispirazione. Ogni parola è come un amico che mi accoglie a braccia aperte nel suo mondo di avventure e scoperte.",
         media: "https://unsplash.it/600/400?image=24",
         author: {
             name: "Luca Formicola",
@@ -70,7 +70,7 @@ const posts = [
     },
     {
         id: 5,
-        content: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        content: "La mia scrivania è il mio regno creativo, un caos ordinato di colori, idee e progetti in attesa di prendere forma. Qui trovo la mia più grande libertà: la possibilità di dare vita ai miei sogni.",
         media: "https://unsplash.it/600/400?image=534",
         author: {
             name: "Alessandro Sainato",
@@ -91,6 +91,11 @@ posts.forEach(function (currentPost) {
         currentPost.author.image = "./img/profile-pic.png";
     }
 
+    // Converto la data nel formato gg/mm/aaaa
+    const dateSplit = currentPost.created.split('-');
+
+    const italianDate = dateSplit[2] + '-' + dateSplit[1] + '-' + dateSplit[0];
+
     // inserisco l'elemento html dentro la lista dei post
     postListElement.innerHTML += `
     <div class="post">
@@ -101,7 +106,7 @@ posts.forEach(function (currentPost) {
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${currentPost.author.name}</div>
-                <div class="post-meta__time">${currentPost.created}</div>
+                <div class="post-meta__time">${italianDate}</div>
             </div>
         </div>
     </div>
