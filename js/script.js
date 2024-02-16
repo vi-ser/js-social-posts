@@ -184,6 +184,11 @@ likeButtonElements.forEach(function (currentButton, index) {
 
             currentButton.classList.remove("pressed")
             post.likes--;
+
+            const indexOfLikedPost = likedPosts.indexOf(post.id);
+
+            likedPosts.splice(indexOfLikedPost, 1)
+            console.log('like:', likedPosts);
         }
 
         // se non è stato ancora premuto
