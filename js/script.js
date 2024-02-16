@@ -83,6 +83,8 @@ const posts = [
 
 const postListElement = document.getElementById("container");
 
+// dichiaro un array dove memorizzo tutti gli id dei post ai quali metto like
+const likedPosts = [];
 
 posts.forEach(function (currentPost, index) {
 
@@ -115,9 +117,8 @@ posts.forEach(function (currentPost, index) {
 
 
     // Converto la data nel formato gg/mm/aaaa
-    const dateSplit = currentPost.created.split('-');
-
-    const italianDate = dateSplit[2] + '-' + dateSplit[1] + '-' + dateSplit[0];
+    const oldDate = new Date(currentPost.created);
+    const newDate = oldDate.toLocaleDateString("it-IT")
 
     // assegno un numero progressivo da 1 a N all'id
     let postId = index + 1;
@@ -132,7 +133,7 @@ posts.forEach(function (currentPost, index) {
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${currentPost.author.name}</div>
-                <div class="post-meta__time">${italianDate}</div>
+                <div class="post-meta__time">${newDate}</div>
             </div>
         </div>
     </div>
@@ -154,16 +155,16 @@ posts.forEach(function (currentPost, index) {
              </div>
         </div>
     </div>
-    `
+    `;
 })
 
 const likeButtonElements = document.querySelectorAll(".like-button");
 
 likeButtonElements.forEach(function (currentButton, index) {
 
-    currentButton.addEventListener("click", function () {
+    currentButton.addEventListener("click", function (e) {
 
-        event.preventDefault();
+        e.preventDefault();
         // console.log(index + "click");
 
         // ottengo l'ID del post dall'attributo data (chiesto aiuto a chatGpt per questo passaggio)
@@ -190,6 +191,11 @@ likeButtonElements.forEach(function (currentButton, index) {
 
             currentButton.classList.add("pressed");
             post.likes++;
+
+            if (!likedPosts.includes(postId)) {
+                likedPosts.push(postId);
+                console.log('like:', likedPosts);
+            }
 
         }
 
